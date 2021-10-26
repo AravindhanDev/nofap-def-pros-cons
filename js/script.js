@@ -2,7 +2,8 @@ const submit = $("#submit");
 
 submit.click((e) => {
 	e.preventDefault();
-	const input = $("#input").val();
+	const inp = $("#input").val();
+	const input = inp.toLowerCase();
 	if (input === "nofap" || input === "porn" || input === "mastrubation") {
 		window.location = "https://www.nofap.com";
 		$("#input").val("");
@@ -37,8 +38,18 @@ submit.click((e) => {
 		window.location =
 			"https://www.medicalnewstoday.com/articles/nofap-benefits";
 		$("#input").val("");
+	} else if (input === "" || input === null) {
+		$.toaster({
+			priority: "warning",
+			title: "Warning",
+			message: "Field is empty"
+		});
 	} else {
-		window.location = "https://www.nofap.com";
+		$.toaster({
+			priority: "danger",
+			title: "Error",
+			message: "404 Not Found"
+		});
 		$("#input").val("");
 	}
 });
